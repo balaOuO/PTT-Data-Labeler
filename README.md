@@ -7,6 +7,7 @@ pip install -r requirements.txt
 
 ## 如何使用
 目前只有爬ptt單篇文章的功能(且遇到18+看板會報錯)
+可直接修改main.py並執行 (其餘沒提到的檔案請小心使用，造成任何問題後果自負) 
 
 1. 引入 src/ptt_article_spyder.py 內的 Artice
     ```py
