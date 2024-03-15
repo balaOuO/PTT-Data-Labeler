@@ -1,6 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 from config import BASE_URL , HEADER_18
+from src.comment import Comment
 
 class Artice:
 
@@ -18,6 +19,13 @@ class Artice:
             child.decompose()
         return main_area.text
     
-    def GetMessages(self) -> list[str]:
-        messages_area = self.main_area.select("div.push")
-        return [message.text for message in messages_area]
+    def GetComment(self) -> list[Comment]:
+        comment_area = self.main_area.select("div.push")
+        comment_list : list[Comment] = []
+        for comment in comment_area:
+            tag = comment.select_one("span.push-tag")
+            author = comment.select_one("span.push-userid")
+            content = comment.select_one("span.push-content")
+            ip_datetime = comment.select_one("span.push-ipdatetime")
+            comment_list.append(Comment(tag=tag.text , author=author.text , content=content.text , ip_datetime=ip_datetime.text))
+        return comment_list
