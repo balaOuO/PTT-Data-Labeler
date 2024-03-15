@@ -1,7 +1,7 @@
 from src.ptt_article_spyder import Artice
 
 def main():
-    artice = Artice("/bbs/BabyMother/M.1709873056.A.AB3.html")
+    artice = Artice("/bbs/sex/M.1710469992.A.FE8.html")
     print(artice.GetContent())
     for msg in artice.GetMessages():
         print(msg)

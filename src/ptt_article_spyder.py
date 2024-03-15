@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from config import BASE_URL
+from config import BASE_URL , HEADER_18
 
 class Artice:
 
@@ -8,7 +8,7 @@ class Artice:
         self.main_area = self._get_main_area(url = BASE_URL + artice_url)
 
     def _get_main_area(self , url) -> BeautifulSoup:
-        artice_data = requests.get(url=url)
+        artice_data = requests.get(url=url , headers=HEADER_18)
         artice_html = BeautifulSoup(artice_data.text , "html.parser")
         return artice_html.select_one("div#main-content")
     
