@@ -4,10 +4,10 @@ from config import BASE_URL , HEADER_18
 from src.comment import Comment
 from datetime import datetime
 
-class Artice:
+class Article:
 
-    def __init__(self , artice_url : str) -> None:
-        self.url : str = BASE_URL + artice_url
+    def __init__(self , article_url : str) -> None:
+        self.url : str = BASE_URL + article_url
         self._main_area : BeautifulSoup
         self.content : str
         self.comment : list[Comment] = []
@@ -19,8 +19,8 @@ class Artice:
 
 
     def Refresh(self):
-        artice_data = requests.get(url=self.url , headers=HEADER_18)
-        self._main_area = BeautifulSoup(artice_data.text , "html.parser").select_one("div#main-content")
+        article_data = requests.get(url=self.url , headers=HEADER_18)
+        self._main_area = BeautifulSoup(article_data.text , "html.parser").select_one("div#main-content")
         self._crawlInformation()
         self._crawlContent()
         self._crawlComment()

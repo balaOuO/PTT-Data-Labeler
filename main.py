@@ -1,15 +1,15 @@
-from src.artice import Artice
+from src.article import Article
 from src.comment import Comment
 
 def main():
-    artice = Artice("/bbs/C_Chat/M.1710679059.A.331.html")
-    print("URL : " , artice.url)
-    print("Author : " , artice.author)
-    print("Title : " , artice.title)
-    print("Board : " , artice.board)
-    print("Time : " , artice.date_time)
-    print(artice.content)
-    for comment in artice.comment:
+    article = Article("/bbs/C_Chat/M.1710679059.A.331.html")
+    print("URL : " , article.url)
+    print("Author : " , article.author)
+    print("Title : " , article.title)
+    print("Board : " , article.board)
+    print("Time : " , article.date_time)
+    print(article.content)
+    for comment in article.comment:
         print("--------------------comment-----------------------")
         print(f"tag : {comment.tag}")
         print(f"author : {comment.author}")
