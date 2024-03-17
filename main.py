@@ -1,4 +1,4 @@
-from src.ptt_article_spyder import Artice
+from src.artice import Artice
 from src.comment import Comment
 
 def main():

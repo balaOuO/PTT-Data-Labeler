@@ -1,17 +1,17 @@
 # 第一次寫爬蟲的練習
 
-## 環境建置
+## Installation
 `
 pip install -r requirements.txt
 `
 
-## 如何使用
+## Usage
 目前只有爬ptt單篇文章的功能(且遇到18+看板會報錯)
 可直接修改main.py並執行 (其餘沒提到的檔案請小心使用，造成任何問題後果自負) 
 
-1. 引入 src/ptt_article_spyder.py 內的 Artice
+1. 引入 src/artice.py 內的 Artice
     ```py
-    from src.ptt_article_spyder import Artice
+    from src.artice import Artice
     ```
 
 1. 創建 Artice 物件，建構時傳入ptt文章網址(不含"https://www.ptt.cc" 的部分)
