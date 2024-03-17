@@ -38,7 +38,7 @@ for comment in artice.comment:      # 文章的所有留言 (list[Comment])
     print("--------------------comment-----------------------")
     print(f"tag : {comment.tag}")           # 評論的標籤 (str)
     print(f"author : {comment.author}")     # 評論的作者 (str)
-    print(f"content {comment.content}")     # 評論的內容 (str)
+    print(f"content : {comment.content}")     # 評論的內容 (str)
     print(f"ip : {comment.ip}")             # 評論發布時的 IP 地址 (str or None)
     print(f"datetime : {comment.date_time}")# 評論發布的日期和時間 (datetime.datetime 物件)
 ```

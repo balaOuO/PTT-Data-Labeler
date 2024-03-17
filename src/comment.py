@@ -12,6 +12,7 @@ class Comment:
     date_time : datetime = field(init=False)
 
     def __post_init__(self):
+        self.content = self.content[2:]
         ip_datetime = self._ip_datetime.split()
 
         if (len(ip_datetime) == 3):

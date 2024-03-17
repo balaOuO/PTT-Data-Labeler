@@ -13,7 +13,7 @@ def main():
         print("--------------------comment-----------------------")
         print(f"tag : {comment.tag}")
         print(f"author : {comment.author}")
-        print(f"content {comment.content}")
+        print(f"content : {comment.content}")
         print(f"ip : {comment.ip}")
         print(f"datetime : {comment.date_time}")
 
