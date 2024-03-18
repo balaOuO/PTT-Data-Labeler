@@ -24,11 +24,12 @@ class Article:
         self._crawlInformation()
         self._crawlContent()
         self._crawlComment()
+        self._mergeComment(index = 0 , offset = 1)
 
     def _crawlInformation(self):
         info = self._main_area.select("span.article-meta-value")
 
-        self.author = info[0].text
+        self.author = info[0].text.split(" ")[0]
         self.board = info[1].text
         self.title = info[2].text
         self.date_time = datetime.strptime(info[3].text , "%c") # Sat Dec 24 20:03:52 2005
@@ -57,3 +58,19 @@ class Article:
                     _ip_datetime=ip_datetime.text
                     )
                 )
+            
+    def _mergeComment(self , index : int , offset : int) -> None:
+
+        if (index + offset >= len(self.comment)):
+            return
+        
+        if (offset > 3):
+            self._mergeComment(index = index + 1 , offset = 1)
+            return
+        
+        if (self.comment[index].author == self.comment[index + offset].author):
+            self._mergeComment(index = index + offset , offset = 1)
+            self.comment[index].content += " " + self.comment[index + offset].content
+            self.comment.pop(index + offset)
+        else:
+            self._mergeComment(index = index , offset = offset + 1)
