@@ -24,7 +24,7 @@ class Article:
         self._crawlInformation()
         self._crawlContent()
         self._crawlComment()
-        self._mergeComment(index = 0 , offset = 1)
+        self._mergeComment()
 
     def _crawlInformation(self):
         info = self._main_area.select("span.article-meta-value")
@@ -45,32 +45,40 @@ class Article:
         comment_area = self._main_area.select("div.push")
         self.comment : list[Comment] = []
         for comment in comment_area:
-            tag = comment.select_one("span.push-tag")
-            author = comment.select_one("span.push-userid")
-            content = comment.select_one("span.push-content")
-            ip_datetime = comment.select_one("span.push-ipdatetime")
-            self.comment.append(
-                Comment(
-                    tag=tag.text,
-                    author=author.text,
-                    content=content.text,
-                    _sourse_year=self.date_time.year,
-                    _ip_datetime=ip_datetime.text
+            try:
+                tag = comment.select_one("span.push-tag")
+                author = comment.select_one("span.push-userid")
+                content = comment.select_one("span.push-content")
+                ip_datetime = comment.select_one("span.push-ipdatetime")
+                self.comment.append(
+                    Comment(
+                        tag=tag.text,
+                        author=author.text,
+                        content=content.text,
+                        _sourse_year=self.date_time.year,
+                        _ip_datetime=ip_datetime.text
+                        )
                     )
-                )
+            except Exception as e:
+                print(f"Catch error : {e}")
+                print(f"Reason : {comment}")
             
-    def _mergeComment(self , index : int , offset : int) -> None:
+    def _mergeComment(self) -> None:
+        i = 0
+        while(i < len(self.comment)):
+            self._merge(index = i , offset = 1)
+            i += 1
 
+    def _merge(self , index : int , offset : int) -> None:
         if (index + offset >= len(self.comment)):
             return
         
         if (offset > 3):
-            self._mergeComment(index = index + 1 , offset = 1)
             return
         
         if (self.comment[index].author == self.comment[index + offset].author):
-            self._mergeComment(index = index + offset , offset = 1)
+            self._merge(index = index + offset , offset = 1)
             self.comment[index].content += " " + self.comment[index + offset].content
             self.comment.pop(index + offset)
         else:
-            self._mergeComment(index = index , offset = offset + 1)
+            self._merge(index = index , offset = offset + 1)
