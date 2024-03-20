@@ -13,6 +13,7 @@ class Comment:
 
     def __post_init__(self):
         self.content = self.content[2:]
+        self.tag = self.tag[0]
         ip_datetime = self._ip_datetime.split()
 
         if (len(ip_datetime) == 3):
