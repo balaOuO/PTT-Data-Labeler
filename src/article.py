@@ -82,3 +82,22 @@ class Article:
             self.comment.pop(index + offset)
         else:
             self._merge(index = index , offset = offset + 1)
+
+    def ParseDict(self) -> dict:
+        return {
+            "url" : self.url,
+            "content" : self.content,
+            "author" : self.author,
+            "title" : self.title,
+            "board" : self.board,
+            "time" : str(self.date_time),
+            "comments" : [
+                {
+                    "tag" : comment.tag,
+                    "author" : comment.author,
+                    "content" : comment.content,
+                    "ip" : comment.ip,
+                    "time" : str(comment.date_time)
+                } for comment in self.comment
+            ]
+        }
