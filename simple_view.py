@@ -15,6 +15,8 @@ while(True):
     input_text = input("Input tag : ")
     if (input_text == "q" or input_text == "Q"):
         break
+    elif (input_text == "" or input_text == " "):
+        continue
     elif(input_text == "del"):
         model.DeleteNowComment()
     else:
