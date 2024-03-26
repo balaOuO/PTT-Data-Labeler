@@ -38,7 +38,9 @@ class SpiderManager:
         if (len(self.article_url_list) <= 0):
             self._finishPage()
             self._crawlPage()
-        return Article(article_url=self.article_url_list.pop())
+        return_article = Article(article_url=self.article_url_list.pop())
+        self._saveArticleList()
+        return return_article
 
     def _finishPage(self):
         self.database_manager.PageFinished(board=self.board , index=self.index)

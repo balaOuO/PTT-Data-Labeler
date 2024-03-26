@@ -12,6 +12,7 @@ while(True):
     print(f"text : {model.GetNowComment()["text"]}")
     print("Input \"del\" to delete this comment.")
     print("Input \"q\" or \"Q\" to exit.")
+    print("Input \"save\" to save.")
     input_text = input("Input tag : ")
     if (input_text == "q" or input_text == "Q"):
         break
