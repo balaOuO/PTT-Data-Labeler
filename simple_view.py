@@ -17,8 +17,11 @@ while(True):
         break
     elif (input_text == "" or input_text == " "):
         continue
-    elif(input_text == "del"):
+    elif (input_text == "del"):
         model.DeleteNowComment()
+    elif (input_text == "save"):
+        model.Save()
+        continue
     else:
         for tag in input_text.split():
             model.AddCommentTag(tag)

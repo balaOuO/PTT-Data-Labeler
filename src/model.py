@@ -16,8 +16,7 @@ class Model:
     def __del__(self) -> None:
         if (len(self.comment_tag["tag"]) == 0):
             self._article.comment.append(self.tmp_comment)
-        JsonManager.SaveResult(self.comment_tag_list)
-        JsonManager.SaveArticle(self._article.ParseDict())
+        self.Save()
 
     def LoadTmpArticle(self) -> None:
         self._article = JsonManager.LoadArticle()
@@ -25,13 +24,23 @@ class Model:
     def NextComment(self) -> None:
         if (self.comment_tag is not None):
             self.comment_tag_list.append(self.comment_tag)
-        if (len(self._article.comment) <= 0):
-            self._article = self.spider_manager.GetNextArticle()
+        self._checkArticle()
         self.tmp_comment = self._article.comment.pop()
         self.comment_tag = {
+            "article" : self._article.content,
             "text" : self.tmp_comment.content,
             "tag" : []
         }
+
+    def _checkArticle(self):
+        if (len(self._article.comment) <= 0):
+            self._article = self.spider_manager.GetNextArticle()
+            self.Save()
+
+    def Save(self):
+        JsonManager.SaveResult(self.comment_tag_list)
+        JsonManager.SaveArticle(self._article.ParseDict())
+        self.comment_tag_list = []
 
     def GetNowArticle(self) -> Article:
         return self._article
