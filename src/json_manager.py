@@ -60,7 +60,7 @@ class JsonManager:
             os.mkdir(path=path)
 
         if (os.path.exists(f"{path}/{file_name}")):
-            with open(path, 'r') as tag_file:
+            with open(f"{path}/{file_name}", 'r') as tag_file:
                 data = json.load(tag_file)
                 tag_file.close()
         else : 
