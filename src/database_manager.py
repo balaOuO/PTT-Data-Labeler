@@ -1,3 +1,5 @@
+from src.article import Article
+
 from supabase import create_client, Client
 import os
 from dotenv import load_dotenv
@@ -26,4 +28,15 @@ class DatabaseManeger:
             "board" : board,
             "index" : index,
             "is_finished" : False
+        }).execute()
+
+    def UploadNewArticle(self, article : Article, index : int):
+        self.db.table('Article').insert({
+            'url': article.url ,
+            "author" : article.author ,
+            "title" : article.title ,
+            "time" : str(article.date_time) ,
+            "content" : article.content ,
+            "board" : article.board ,
+            "page_index" : index
         }).execute()

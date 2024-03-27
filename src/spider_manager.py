@@ -39,6 +39,7 @@ class SpiderManager:
             self._finishPage()
             self._crawlPage()
         return_article = Article(article_url=self.article_url_list.pop())
+        self.database_manager.UploadNewArticle(article=return_article , index=self.index)
         self._saveArticleList()
         return return_article
 

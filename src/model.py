@@ -27,7 +27,7 @@ class Model:
         self._checkArticle()
         self.tmp_comment = self._article.comment.pop()
         self.comment_tag = {
-            "article" : self._article.content,
+            "url" : self._article.url,
             "text" : self.tmp_comment.content,
             "tag" : []
         }
