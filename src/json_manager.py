@@ -55,16 +55,19 @@ class JsonManager:
             article_list = JsonManager.DEFAULT_ARTICLE_LIST
         return article_list
     
-    def SaveResult(result : list[dict] , path : str = "result/result.json") -> None:
-        if os.path.exists(path):
+    def SaveResult(result : list[dict] , path : str = "result" , file_name : str = "result.json") -> None:
+        if not os.path.exists(path):
+            os.mkdir(path=path)
+
+        if (os.path.exists(f"{path}/{file_name}")):
             with open(path, 'r') as tag_file:
                 data = json.load(tag_file)
                 tag_file.close()
-        else:
+        else : 
             data = []
 
         data += result
-        with open(path, 'w') as tag_file:
+        with open(f"{path}/{file_name}" , 'w') as tag_file:
             json.dump(data, tag_file)
             tag_file.close()
         
