@@ -72,4 +72,15 @@ class JsonManager:
             tag_file.close()
         
 
+    def LoadLabels() -> list[str]:
+        labels_dict : dict = {}
+        labels_list : list = []
+        with open("labels.json", 'r' , encoding="UTF-8") as labels_file:
+            labels_dict = json.load(labels_file)
+            labels_file.close()
+        labels_list = [""] * len(labels_dict["categories"])
+        for label in labels_dict["categories"]:
+            labels_list[label["id"]] = label["name"]
+        return labels_list
+
 
