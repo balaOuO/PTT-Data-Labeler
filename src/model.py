@@ -10,7 +10,7 @@ class Model:
         self.spider_manager = SpiderManager()
         self.comment_tag_list : list[dict] = []
         self.tmp_comment : Comment
-        self.label_list : list[str] = JsonManager.LoadLabels()
+        self.label_list : list[dict] = JsonManager.LoadLabels()
         self.LoadTmpArticle()
         self.NextComment()
 
@@ -59,14 +59,16 @@ class Model:
     def GetNowComment(self) -> dict:
         return self.comment_tag
     
-    def AddCommentTag(self, label_index : int) -> None:
-        if (label_index < len(self.label_list)):
-            self.comment_tag["tag"][label_index] = 1
-        else:
-            raise Exception(f"Index \"{label_index}\" is out of labels list range.")
+    def AddCommentTag(self, label_key : str) -> bool:
+        for label in self.label_list:
+            if (label_key == label["key"]):
+                self.comment_tag["tag"][label["id"]] = 1
+                return 1
+        return 0
+        
 
     def DeleteNowComment(self) -> None:
         self.comment_tag = None
 
-    def GetLabels(self) -> list[str]:
+    def GetLabels(self) -> list[dict]:
         return self.label_list
