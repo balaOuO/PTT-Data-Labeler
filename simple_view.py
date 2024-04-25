@@ -23,6 +23,7 @@ def main():
     while(True):
         console.print(input_info)
         console.print("[yellow bold]---------------------------------------------------------------")
+        console.print(f"[yellow bold]Title : [black]{model.GetNowArticle().title}")
         console.print(f"[yellow bold]Article : [black]{model.GetNowArticle().content}")
         console.print(f"[yellow bold]text : [black]{model.GetNowComment()["text"]}")
         console.print("Input \"del\" to delete this comment.")
