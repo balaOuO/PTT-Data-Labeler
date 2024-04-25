@@ -8,7 +8,7 @@ from rich.table import Table
 console = Console()
 
 def SetInputInfo(label_list : list[str]) -> str:
-    table = Table(title="Tags")
+    table = Table()
     table.add_column("Key", justify="left", style="cyan", no_wrap=True)
     table.add_column("Name", justify="left" , style="magenta", no_wrap=True)
     for label in label_list:
@@ -21,10 +21,10 @@ def main():
     input_text = ""
     input_info = SetInputInfo(model.GetLabels())
     while(True):
+        console.print(input_info)
         console.print("[yellow bold]---------------------------------------------------------------")
         console.print(f"[yellow bold]Article : [black]{model.GetNowArticle().content}")
         console.print(f"[yellow bold]text : [black]{model.GetNowComment()["text"]}")
-        console.print(input_info)
         console.print("Input \"del\" to delete this comment.")
         console.print("Input \"q\" or \"Q\" to exit.")
         console.print("Input \"save\" to save.")

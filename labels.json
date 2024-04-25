@@ -2,43 +2,43 @@
     "categories": [
         {
             "id": 0,
-            "key": "b1",
+            "key": "1",
             "name": "藍正",
             "description": ""
         },
         {
             "id": 1,
-            "key": "b0",
+            "key": "2",
             "name": "藍反",
             "description": ""
         },
         {
             "id": 2,
-            "key": "g1",
+            "key": "4",
             "name": "綠正",
             "description": ""
         },
         {
             "id": 3,
-            "key": "g0",
+            "key": "5",
             "name": "綠反",
             "description": ""
         },
         {
             "id": 4,
-            "key": "w1",
+            "key": "7",
             "name": "白正",
             "description": ""
         },
         {
             "id": 5,
-            "key": "w0",
+            "key": "8",
             "name": "白反",
             "description": ""
         },
         {
             "id": 6,
-            "key": "n",
+            "key": "0",
             "name": "無",
             "description": ""
         },
@@ -63,6 +63,12 @@
         {
             "id": 10,
             "key": "c",
+            "name": "無",
+            "description": ""
+        },
+        {
+            "id": 11,
+            "key": "v",
             "name": "不知道",
             "description": ""
         }
