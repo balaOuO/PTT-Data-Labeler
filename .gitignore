@@ -4,4 +4,4 @@ test.ipynb
 .env
 src/temp_article.json
 src/temp_article_list.json
-result/*
+result/*.json
