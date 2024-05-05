@@ -4,8 +4,10 @@ from src.json_manager import JsonManager
 from src.model import Model
 from rich.console import Console
 from rich.table import Table
+from rich.traceback import install
 
 console = Console()
+install(show_locals=True)
 
 def SetInputInfo(label_list : list[str]) -> str:
     table = Table()
